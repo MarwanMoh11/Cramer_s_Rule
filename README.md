@@ -1,6 +1,6 @@
 # Cramer's Rule Calculator
 
-Welcome to the Cramer's Rule Calculator project! This is a simple program written in C++ that allows you to solve a system of linear equations using Cramer's Rule. You don't need to be a programmer to use it, just follow the instructions below!
+Welcome to the Cramer's Rule Calculator project! This a simple linear algebra project that allows you to perform Cramer's Rule on any system of linear equations. The instructions below are easy to follow for non-programmers.
 
 ## What is Cramer's Rule?
 
