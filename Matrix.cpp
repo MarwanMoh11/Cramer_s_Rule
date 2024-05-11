@@ -12,6 +12,12 @@ Matrix::Matrix(int rows, int cols) {
     elements = vector<vector<double>>(rows, vector<double>(cols, 0));
 }
 
+// Default constructor that initializes an empty matrix
+Matrix::Matrix() {
+    elements = vector<vector<double>>();
+
+}
+
 // Constructor that initializes the matrix with the given elements of another matrix
 Matrix::Matrix(const Matrix &m) {
     elements = m.elements;
@@ -90,6 +96,8 @@ double Matrix::getElement(int row, int col) {
 int Matrix::getCols() {
     return elements[0].size();
 }
+
+
 
 
 

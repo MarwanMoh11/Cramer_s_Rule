@@ -12,6 +12,7 @@ private:
     vector<vector<double>> elements;
 
 public:
+    Matrix();
     Matrix(int rows, int cols);
     Matrix(const Matrix &m);
     Matrix(vector<vector<double>> elements);

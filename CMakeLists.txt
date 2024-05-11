@@ -7,4 +7,6 @@ add_executable(Cramer_s_Rule main.cpp
         Matrix.cpp
         Matrix.h
         SystemOfEquations.cpp
-        SystemOfEquations.h)
+        SystemOfEquations.h
+        CramerCalculator.cpp
+        CramerCalculator.h)
