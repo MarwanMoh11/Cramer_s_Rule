@@ -5,6 +5,7 @@
 #include "Matrix.h"
 #include <cmath>
 #include <iostream>
+#include <iomanip>
 // we have three constructors to have the ability to initialize the matrix in three different ways
 
 // Constructor that initializes the matrix with the given number of rows and columns
@@ -73,14 +74,26 @@ double Matrix::determinant() {
 
 
 }
-// prints the matrix using cout
+// prints the matrix using cout with proper formatting
 void Matrix::print() {
-    for (int i = 0; i < elements.size(); i++) {
-        for (int j = 0; j < elements[i].size(); j++) {
-            cout << elements[i][j] << " ";
+
+    // find the maximum width of the elements to align them properly
+    int max_width = 0;
+    for (const auto &row : elements) {
+        for (const auto &element : row) {
+            int width = std::to_string(element).length();
+            max_width = std::max(max_width, width);
         }
-        cout << endl;
     }
+
+    // print the elements with the proper width
+    for (const auto &row : elements) {
+        for (const auto &element : row) {
+            std::cout << std::setw(max_width/2) << element;
+        }
+        std::cout << std::endl;
+    }
+
 }
 // sets the element at the given row and column to the given value
 void Matrix::setElement(int row, int col, double value) {
