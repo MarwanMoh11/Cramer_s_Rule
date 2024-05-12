@@ -52,7 +52,7 @@ void CramerCalculator::readInput() {
     vector<vector<double>> coefficients(n, vector<double>(n)); // initialize a 2D vector to store the coefficients
     vector<double> constants(n); // initialize a vector to store the constants
 
-    cout << "Enter the equations (format: a1x1+a2x2+...+anxn=c):" << endl;
+    cout << "Enter the equations (format with NO SPACES: a1x1+a2x2+...+anxn=c):" << endl;
     for (int i = 0; i < n; i++) {
         string line;
         getline(cin, line); // read the entire line
