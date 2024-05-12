@@ -4,6 +4,7 @@
 
 #include "CramerCalculator.h"
 using namespace std;
+#include <sstream>
 
 
 // Constructor that initializes the system of equations object
@@ -40,33 +41,47 @@ void CramerCalculator::menu() {
 
 
 // read the input from the user and solve the system of equations
+
+
 void CramerCalculator::readInput() {
     int n;
     cout << "Enter the number of equations: ";
     cin >> n;
+    cin.ignore(); // to clear the newline character from the input buffer
 
     vector<vector<double>> coefficients(n, vector<double>(n)); // initialize a 2D vector to store the coefficients
     vector<double> constants(n); // initialize a vector to store the constants
 
-    cout << "Enter the coefficients of the equations:" << endl;
+    cout << "Enter the equations (format: a1x1+a2x2+...+anxn=c):" << endl;
     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            cout << "Enter the coefficient of x" << j + 1 << " in equation " << i + 1 << ": ";
-            cin >> coefficients[i][j];
-        }
-    }
+        string line;
+        getline(cin, line); // read the entire line
 
-    cout << "Enter the constants of the equations:" << endl;
-    for (int i = 0; i < n; i++) {
-        cout << "Enter the constant in equation " << i + 1 << ": ";
-        cin >> constants[i];
+        stringstream ss(line); // create a stringstream from the line
+
+        // extract the coefficients from the line
+        for (int j = 0; j < n; j++) {
+            string token;
+            getline(ss, token, 'x'); // read the coefficient before 'x'
+            coefficients[i][j] = stod(token); // convert the token to double and store it
+
+            // skip the variable number
+            ss.ignore();
+        }
+
+        // skip the '=' character
+        ss.ignore();
+
+        // extract the constant from the line
+        string token;
+        getline(ss, token);
+        constants[i] = stod(token);
     }
 
     Matrix m(coefficients); // create a matrix object with the coefficients
     SystemOfEquations system(m, constants); // create a system of equations object with the matrix and constants
     system.print(); // print the system of equations
     vector<double> solution = system.solve(); // solve the system of equations
-
 
     // print the solution
     cout << "The solution is:" << endl;

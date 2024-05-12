@@ -15,6 +15,7 @@ vector<double> SystemOfEquations::solve() {
     vector<double> solution(n, 0); // initialize the solution vector with zeros
 
     double det = coefficients.determinant(); // calculate the determinant of the coefficient matrix
+    std::cout << "Determinant of the coefficient matrix: " << det << std::endl;
 
     if (det == 0) { // if the determinant is zero, the system has no unique solution
         std::cout << "The system of equations has no unique solution." << std::endl;
@@ -26,7 +27,14 @@ vector<double> SystemOfEquations::solve() {
         for (int j = 0; j < n; j++) {
             temp.setElement(j, i, constants[j]); // replace the i-th column with the constants
         }
-        solution[i] = temp.determinant() / det; // calculate the solution for the i-th variable
+        cout << "Matrix after replacing column " << i + 1 << " with constants:" << std::endl;
+        temp.print();
+
+        double tempDet = temp.determinant(); // calculate the determinant of the temporary matrix
+        cout << "Determinant of the temporary matrix: " << tempDet << std::endl;
+
+        solution[i] = tempDet / det; // calculate the solution for the i-th variable
+        cout << "Solution for x" << i + 1 << ": " << tempDet <<" / " << det  << " = " << solution[i] << std::endl;
     }
 
     return solution;
